@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test of User Component Testing follow / unfollow button 1`] = `
+<div
+  className="userBlock"
+>
+  <div
+    className="avatar"
+  >
+    <div
+      className="avatar"
+    >
+      <img
+        alt=""
+        src="https://st2.depositphotos.com/2703645/5669/v/950/depositphotos_56695985-stock-illustration-male-avatar.jpg"
+      />
+    </div>
+    <button
+      className="followBtn"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Follow
+    </button>
+  </div>
+  <div
+    className="userInfo"
+  >
+    <div>
+      <h3>
+        Juls2201
+      </h3>
+      <p>
+        16690
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Test of User Component Testing follow / unfollow button 2`] = `
+<div
+  className="userBlock"
+>
+  <div
+    className="avatar"
+  >
+    <div
+      className="avatar"
+    >
+      <img
+        alt=""
+        src="https://st2.depositphotos.com/2703645/5669/v/950/depositphotos_56695985-stock-illustration-male-avatar.jpg"
+      />
+    </div>
+    <button
+      className="followBtn"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Follow
+    </button>
+  </div>
+  <div
+    className="userInfo"
+  >
+    <div>
+      <h3>
+        Juls2201
+      </h3>
+      <p>
+        16690
+      </p>
+    </div>
+  </div>
+</div>
+`;

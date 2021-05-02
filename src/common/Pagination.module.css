@@ -1,0 +1,15 @@
+
+.li>a{
+  text-decoration: none;
+  color:azure;
+  font-size: 18px;
+}
+.active a{
+  color: red;
+}
+
+.paginationBlock {
+  display: flex;
+  justify-content: space-evenly;
+ list-style: none;
+}

@@ -1,0 +1,26 @@
+.nav {
+    grid-area: n;
+    background: aqua;
+    padding: 20px 0 20px 0;
+    }
+    
+.item a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin: 10px 20px;
+}
+a.active_link {
+    color: #fca451;
+}
+
+.fr {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000;
+    background-color: azure;
+    border-radius: 50%;
+    margin-left: 20px;
+}

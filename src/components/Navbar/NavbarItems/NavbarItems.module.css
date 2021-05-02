@@ -1,0 +1,9 @@
+.item a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin: 10px 20px;
+}
+a.active_link {
+    color: #fca451;
+}

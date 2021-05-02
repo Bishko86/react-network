@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    padding: 0 0 0 15px;
+    grid-area: h;
+    background: #650987;
+  }
+  .logo {
+    color: aliceblue;
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-right: 30px;
+  }
+
+  .loginBlock {
+width: 45%;
+    
+  }
+  .loginBlock a {
+    color:#fff;
+    float: right;
+  }

@@ -1,0 +1,28 @@
+.userBlock {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    margin: 10px 5px;
+}
+.avatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 10px 20px 5px;
+}
+.userInfo{
+  
+    background-color: #97c8ca;
+    border: 1px solid rgb(10, 55, 73);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    /* margin: 0 5px; */
+}
+.followBtn {
+    width: 65px;
+}
+
+/* .active_link {
+    color: red;
+} */

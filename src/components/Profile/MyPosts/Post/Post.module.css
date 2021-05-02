@@ -1,0 +1,9 @@
+.block_post p{
+    margin-bottom: 0;
+}
+.block_post img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin: 5px 20px 10px 20px;
+}

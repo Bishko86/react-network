@@ -1,0 +1,20 @@
+.post_area {
+    position: relative;
+    display: flex;
+    /* align-items: center;
+    */
+    flex-direction: column;
+}
+.post {
+    margin-left: 50px;
+}
+/* .post_area h4 {
+    color: red;
+} */
+.blockPost {
+    padding: 10px;
+}
+.addPost,
+.textarea {
+    display: block;
+}

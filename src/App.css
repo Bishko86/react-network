@@ -1,0 +1,22 @@
+.app-wrapper {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas: 
+  "h h"
+  "n c"
+  ;
+ 
+  /* grid-gap: 10px; */
+}
+.app-wrapper-content {
+  grid-area: c;
+  background-color: #156839;
+}
+a#Friends {
+  margin: 60px 0 20px 20px;
+  font-size: 26px;
+}
+
+
+

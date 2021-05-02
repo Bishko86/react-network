@@ -1,0 +1,10 @@
+/* .formControl{
+    border: 1px solid #941550;
+} */
+.formControl.error>input,
+.formControl.error>textarea{
+    border: 2px solid #e70707;
+}
+.color {
+    color:#b7e60f;
+}

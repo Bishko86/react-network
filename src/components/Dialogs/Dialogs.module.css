@@ -1,0 +1,17 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    position: relative;
+    height: 100%;
+}
+.messageBlock {
+    display: grid;
+    grid-template-rows: 10fr 2fr;
+    position: relative;
+    max-height: 100%;
+    background-color: rgb(175, 175, 170);
+}
+.messageArea {
+    height: 100%;
+    overflow: hidden;
+}
