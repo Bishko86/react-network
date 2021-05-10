@@ -1,16 +1,19 @@
 import React, { PureComponent } from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { addLike, addPost, getUserProfile, getUserStatus, setUserStatus, savePhoto, saveProfile } from '../Durax/profile-reducer';
+import {
+    addLike, addPost, getUserProfile, getUserStatus,
+    setUserStatus, savePhoto, saveProfile, closeModalError, deletePost
+} from '../Durax/profile-reducer';
 import { withRouter } from 'react-router';
 import { withAuthRedirect } from './../../hoc/WithAuthRedirect'
 import { compose } from 'redux';
-import { render } from '@testing-library/react';
+import { getUserPhotos, getErrResponse, getPosts, getProfile, getStatus, isLoggedUser } from './../Durax/profile-selectors'
 
 class ProfileContainer extends PureComponent {
+
     refreshProfile = () => {
         let userId = +this.props.match.params.userId;
-
         if (!userId) {
             userId = this.props.loggedUserId;
         }
@@ -36,17 +39,23 @@ class ProfileContainer extends PureComponent {
             addLike={this.props.addLike}
             addPost={this.props.addPost}
             posts={this.props.posts}
-            saveProfile={this.props.saveProfile} />)
+            saveProfile={this.props.saveProfile}
+            httpError={this.props.httpError}
+            closeModalError={this.props.closeModalError}
+            deletePost={this.props.deletePost}
+            photos={this.props.photos} />)
     }
 }
 const mapStateToProps = (state) => {
     return {
-        posts: state.profilePage.posts,
-        profile: state.profilePage.profile,
-        status: state.profilePage.status,
-        loggedUserId: state.auth.userId,
+        posts: getPosts(state),
+        profile: getProfile(state),
+        photos: getUserPhotos(state),
+        status: getStatus(state),
+        httpError: getErrResponse(state),
+        loggedUserId: isLoggedUser(state),
     }
 }
-const ProfileContainerBlock = compose(connect(mapStateToProps, { addPost, addLike, getUserProfile, getUserStatus, setUserStatus, savePhoto, saveProfile }), withRouter, withAuthRedirect)(ProfileContainer)
+const ProfileContainerBlock = compose(connect(mapStateToProps, { addPost, addLike, getUserProfile, getUserStatus, setUserStatus, savePhoto, saveProfile, closeModalError, deletePost }), withRouter, withAuthRedirect)(ProfileContainer)
 
 export default ProfileContainerBlock;

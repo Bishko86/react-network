@@ -4,11 +4,11 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import store from './components/Durax/redux-store';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter >
+        < BrowserRouter>
             <Provider store={store}>
                 <App navbar={store.getState().navbarPage} />
             </Provider>

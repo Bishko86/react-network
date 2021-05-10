@@ -4,3 +4,6 @@
 div.active {
     color: rgb(211, 100, 26);
 }
+.likes {
+    cursor: pointer;
+}
