@@ -6,7 +6,7 @@ const ErrorWindow = ({ error, from, closeModalError }) => {
   return (
     <div className={style.modal}>
       <div className={style.modalContent}>
-        From: {from}
+        <span> From: {from} </span>
         <p className={style.errorMessage}>{error.message}</p>
         <button onClick={closeModalError} className={style.close}>Ok</button>
       </div>
