@@ -3,7 +3,6 @@ import {
     follow, unFollow, setCurrentPage, getUsersThunkCreator
 } from './../Durax/users-reducer'
 import { connect } from 'react-redux';
-import Paginator from '../../common/PaginatorNew';
 import Users from './Users';
 import Preloader from '../../common/Preloader';
 import { withAuthRedirect } from './../../hoc/WithAuthRedirect'

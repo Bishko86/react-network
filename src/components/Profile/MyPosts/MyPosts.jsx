@@ -5,13 +5,12 @@ import { Form, Field } from 'react-final-form';
 import FormControl from '../../../common/FormsControl/FormsControl';
 import { composeValidators, required, maxLengthInput } from '../../validators/validators'
 
-const MyPosts = React.memo((props) => {
+const MyPosts = React.memo(({ photos, addPost, deletePost, addLike, posts }) => {
     let onSubmit = (formData) => {
-        props.addPost(formData.posText)
+        addPost(formData.posText)
         formData.posText = ''
     }
     return (
-
         <div className={style.blockPost}>
 
             <h4>My posts</h4>
@@ -20,7 +19,19 @@ const MyPosts = React.memo((props) => {
                 <PostForm onSubmit={onSubmit} />
             </div>
             <div className={style.post}>
-                {props.posts.map((post) => <Post message={post.post} currentPost={post} like={props.addLike} key={post.id} />)}
+                {
+                    posts.map((post) => <Post
+                        deletePost={deletePost}
+                        photos={photos}
+                        addLike={addLike}
+                        message={post.text}
+                        liked={post.liked}
+                        likes={post.likes}
+                        date={post.date}
+                        key={post.id}
+                        id={post.id}
+                    />)
+                }
             </div>
         </div >
     )

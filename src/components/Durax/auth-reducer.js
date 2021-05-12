@@ -4,6 +4,7 @@ const SET_USER_DATA = 'auth_reducer_SET_USER_DATA';
 const IS_ERROR_REQUEST = 'auth_reducer_IS_ERROR_REQUEST';
 const TOGGLE_IS_FATCHING = 'auth_reducer_TOGGLE_IS_FATCHING';
 const GET_CAPTCHA_URL = 'auth_reducer_GET_CAPTCHA_URL';
+
 let initState = {
     userId: null,
     email: null,
@@ -66,7 +67,6 @@ export const login = (login, password, rememberMe, captcha) => (dispatch) => {
     return authorAPI.login(login, password, rememberMe, captcha).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(incorrectLoginData(false, ''));
-
             dispatch(authMeThunk())
         }
         else {
@@ -75,7 +75,6 @@ export const login = (login, password, rememberMe, captcha) => (dispatch) => {
             }
             dispatch(incorrectLoginData(true, response.data.messages[0]));
         }
-
     })
 }
 export const logout = () => (dispatch) => {
@@ -88,8 +87,6 @@ export const logout = () => (dispatch) => {
 export const getCaptchaUrl = () => async (dispatch) => {
     const response = await securityAPI.getCaptchaUrl()
     const capthaUrl = response.data.url;
-    // debugger
-
     dispatch(setCaptchaUrl(capthaUrl))
 }
 

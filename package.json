@@ -2,7 +2,7 @@
   "name": "react-app1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bishko86.github.io/social-network",
+  "homepage": "https://bishko86.github.io/react-network",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",

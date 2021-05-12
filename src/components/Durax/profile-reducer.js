@@ -1,63 +1,65 @@
 import { profileAPI } from './../../API/api';
-const ADD_LIKE = 'PROFILE_ADD_LIKE';
-const ADD_POST = 'PROFILE_ADD_POST';
-const DELETE_POST = 'PROFILE_DELETE_POST';
-const SET_PROFILE_USER = 'PROFILE_SET_PROFILE_USER';
-const GET_USER_STATUS = 'PROFILE_GET_USER_STATUS';
-const SAVE_PHOTO_SUCSESS = 'SAVE_PHOTO_SUCSESS';
+
+const ADD_LIKE = 'Profile_Reducer_PROFILE_ADD_LIKE';
+const ADD_POST = 'Profile_Reducer_PROFILE_ADD_POST';
+const DELETE_POST = 'Profile_Reducer_PROFILE_DELETE_POST';
+const SET_PROFILE_USER = 'Profile_Reducer_PROFILE_SET_PROFILE_USER';
+const GET_USER_STATUS = 'Profile_Reducer_PROFILE_GET_USER_STATUS';
+const SAVE_PHOTO_SUCSESS = 'Profile_Reducer_SAVE_PHOTO_SUCSESS';
+const SET_ERROR_DATA = 'Profile_Reducer_SET_ERROR_DATA';
+const CLOSE_ERROR_MODAL_WINDOW = 'Profile_Reducer_CLOSE_ERROR_MODAL_WINDOW';
 let initialState = {
-    user: {
-        // avatar: 'link',
-        // name: 'Roman',
-        // sureName: 'Bishko',
-        // birthday: '18, 08, 1986',
-        // age: 34,
-        // likedPosts: new Set()
-    },
+
     posts: [
         {
             id: 1,
             post: "Hey, how are you?",
             likes: 8,
-            liked: false
+            liked: false,
+            date: '18.08.2020'
         },
         {
             id: 2,
             post: "Hello, friend!",
             likes: 15,
-            liked: false
+            liked: false,
+            date: '18.08.2020'
+
         },
         {
             id: 3,
             post: "Please at this link https://www.google.com.ua/?hl=uk",
             likes: 68,
-            liked: false
+            liked: false,
+            date: '28.08.2020'
+
         }
     ],
     profile: null,
-    status: ''
+    status: '',
+    error: false
 }
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_USER_STATUS:
             return {
                 ...state,
-                status: action.status
+                status: action.status,
             }
         case ADD_LIKE:
             return {
                 ...state,
                 posts: state.posts.map(post => {
-                    if (post.id === action.post.id) {
-                        if (!action.post.liked) return {
+                    if (post.id === action.id) {
+                        if (!action.liked) return {
                             ...post,
                             liked: true,
-                            likes: ++action.post.likes
+                            likes: ++action.likes
                         }
                         else return {
                             ...post,
                             liked: false,
-                            likes: --action.post.likes
+                            likes: --action.likes
                         }
                     }
                     else return post
@@ -70,10 +72,12 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: [...state.posts,
                 {
-                    id: state.posts[state.posts.length - 1].id + 1,
+                    id: state.posts.length > 0 ?
+                        state.posts[state.posts.length - 1].id + 1 : 1,
                     post: action.postText,
                     likes: 0,
-                    liked: false
+                    liked: false,
+                    date: new Date().toLocaleDateString()
                 }
                 ]
             }
@@ -85,13 +89,24 @@ const profileReducer = (state = initialState, action) => {
         case SET_PROFILE_USER:
             return {
                 ...state,
-                profile: { ...state.profile, ...action.profile }
+                profile: { ...state.profile, ...action.profile },
             }
         case SAVE_PHOTO_SUCSESS:
             return {
                 ...state,
 
-                profile: { ...state.profile, photos: action.photos }
+                profile: { ...state.profile, photos: action.photos },
+                error: false
+            }
+        case SET_ERROR_DATA:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case CLOSE_ERROR_MODAL_WINDOW:
+            return {
+                ...state,
+                error: false
             }
         default:
             return state;
@@ -102,10 +117,11 @@ const profileReducer = (state = initialState, action) => {
 export const setProfileUser = (profile) => ({ type: SET_PROFILE_USER, profile });
 export const addPost = (postText) => ({ type: ADD_POST, postText });
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
-export const addLike = (post) => ({ type: ADD_LIKE, post });
+export const addLike = (id, likes, liked) => ({ type: ADD_LIKE, id, likes, liked });
 export const setStatus = (status) => ({ type: GET_USER_STATUS, status });
 export const savePhotoSucsess = (photos) => ({ type: SAVE_PHOTO_SUCSESS, photos });
-
+export const closeModalError = () => ({ type: CLOSE_ERROR_MODAL_WINDOW });
+const setErrorData = (error, request) => ({ type: SET_ERROR_DATA, payload: { error, request } });
 
 export const getUserProfile = (id) => {
     return async (dispatch) => {
@@ -113,9 +129,8 @@ export const getUserProfile = (id) => {
             let data = await profileAPI.getUser(id)
             dispatch(setProfileUser(data));
         }
-        catch (err) { alert(err) }
+        catch (err) { dispatch(setErrorData(err, 'User Profile')) }
     }
-
 }
 
 export const savePhoto = (file) => {
@@ -124,10 +139,9 @@ export const savePhoto = (file) => {
             let response = await profileAPI.savePhoto(file)
             if (response.data.resultCode === 0) {
                 dispatch(savePhotoSucsess(response.data.data.photos));
-
             }
         }
-        catch (err) { alert(err + 'PHOTO') }
+        catch (err) { dispatch(setErrorData(err)) }
     }
 }
 
@@ -136,17 +150,20 @@ export const getUserStatus = (id) => async (dispatch) => {
         let response = await profileAPI.getStatus(id);
         dispatch(setStatus(response.data));
     }
-    catch (err) { alert(err + 'Get Status') }
+    catch (err) { dispatch(setErrorData(err, 'User Status')) }
 }
 
 export const saveProfile = (profile) => async (dispatch, getState) => {
-    let userId = getState().auth.userId
-    let response = await profileAPI.saveProfile(profile);
-    if (response.data.resultCode === 0) {
-        dispatch(getUserProfile(userId))
+    try {
+        let userId = getState().auth.userId
+        let response = await profileAPI.saveProfile(profile);
+        if (response.data.resultCode === 0) {
+            dispatch(getUserProfile(userId))
+            return response
+        }
         return response
     }
-    return response
+    catch (err) { dispatch(setErrorData(err)) }
 }
 
 export const setUserStatus = (status) => {
@@ -157,7 +174,7 @@ export const setUserStatus = (status) => {
                 dispatch(setStatus(status))
             }
         }
-        catch (err) { alert(err + 'setUserStatus') }
+        catch (err) { dispatch(setErrorData(err)) }
     }
 }
 

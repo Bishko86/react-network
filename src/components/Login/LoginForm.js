@@ -12,6 +12,7 @@ const LoginForm = (props) => {
     if (props.authMe) return <Redirect to={'/profile'} />
     let { isFetching, toggleIsFetching, captchaUrl } = props
     if (isFetching) return <Preloader />
+
     let { isError, message } = props.error
 
     return (

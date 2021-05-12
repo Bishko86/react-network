@@ -37,9 +37,7 @@ class App extends React.Component {
     if (!this.props.initialized) {
       return <Preloader from={'AppComponent'} />
     }
-
     return (
-
       <div className="app-wrapper">
         <HeaderContainer />
         <Navbar items={this.props.navbar} />
