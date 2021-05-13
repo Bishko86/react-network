@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 export const getUserPhotos = (state) => {
-  let image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVU_f47fabMc829_DSs8H4PVI-Q2TVEYehSw&usqp=CAU";
+  let image = "https://sun9-4.userapi.com/impf/c622525/v622525638/4af76/FHil73y11v0.jpg?size=600x260&quality=96&proxy=1&sign=f859b538c68a2e31968ba0601eba79c5&type=album";
   if (state.profilePage.profile) return state.profilePage.profile.photos;
   return { large: image, small: image };
 }
