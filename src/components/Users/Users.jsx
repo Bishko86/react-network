@@ -1,7 +1,4 @@
 import React, { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
-import AvatarUser from '../Dialogs/AvatarUser/AvatarUser';
-import style from './Users.module.css';
 import User from './User'
 
 const Users = (props) => {

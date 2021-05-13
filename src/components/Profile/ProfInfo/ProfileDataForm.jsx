@@ -3,10 +3,9 @@ import { Form, Field } from 'react-final-form';
 import { composeValidators, required, maxLengthInput } from './../../validators/validators'
 import { FORM_ERROR } from 'final-form'
 import FormControl from './../../../common/FormsControl/FormsControl'
-import Preloader from '../../../common/Preloader';
 
 const ProfileDataForm = (props) => {
-  let { initialValues, setEditModeData, isFetching, setIsFetching, saveProfile, contacts } = props;
+  let { initialValues, setEditModeData, saveProfile, contacts } = props;
 
   let [isLookingJob, setIsLookingJob] = useState(false);
 
@@ -15,7 +14,6 @@ const ProfileDataForm = (props) => {
   }
   const onSubmit = async (formData) => {
     try {
-      // setIsFetching(true);
       let result = await saveProfile(formData);
 
 
@@ -33,24 +31,19 @@ const ProfileDataForm = (props) => {
         // console.log(object);
         // return { object }
         return { [FORM_ERROR]: error }
-
         // }
       }
-
-      // setIsFetching(false)
       setEditModeData(false)
 
     }
     catch { return {} }
   }
-  if (isFetching) return <Preloader />;
-  return (
 
+  return (
     <Form
       onSubmit={onSubmit}
       initialValues={initialValues}
       validate={values => {
-        // console.log(values);
         const errors = {};
         if (!values.contacts.facebook) {
           errors.contacts = { 'facebook': 'Required' }
@@ -100,9 +93,6 @@ const ProfileDataForm = (props) => {
                         </div>
                       )}
                     </Field>
-                    {/* {submitError && <div>{submitError}</div>} */}
-
-
                   </div>)
                 })}
             </div>
@@ -112,20 +102,5 @@ const ProfileDataForm = (props) => {
     </Form >
   )
 }
-
-{/* <Field validate={maxLengthInput(30)} type="text" name={`contacts.${contact}`} placeholder={contact} typefield='input' render={FormControl} ></Field> */ }
-
-
-{/* <Field name={`contacts.${contact}`}>
-  {({ input, meta }) => (
-    <div>
-      <label>{contact}</label>
-      <input {...input} type="text" placeholder={contact} />
-      {(meta.error || meta.submitError) && meta.touched && (
-        <span>{meta.error || meta.submitError}</span>
-      )}
-    </div>
-  )}
-</Field> */}
 
 export default ProfileDataForm;

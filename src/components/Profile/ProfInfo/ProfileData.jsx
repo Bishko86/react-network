@@ -35,7 +35,7 @@ const Contact = (props) => {
   let trueContact = contacts.map(contact => {
     let [social, link] = contact;
     return link ? < div style={{ marginLeft: '20px' }
-    } key={social} > <span><b>{social + ': '}</b></span><a href={link} target="_blank">{link}</a></div > : null;
+    } key={social} > <span><b>{social + ': '}</b></span><a href={link} target="_blank" rel="noreferrer">{link}</a></div > : null;
   });
   return (
     <>{trueContact}</>

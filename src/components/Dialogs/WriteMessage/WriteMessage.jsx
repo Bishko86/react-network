@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './WriteMessage.module.css';
-import { required, maxLengthInput, composeValidators } from '../../validators/validators.js'
+import { required } from '../../validators/validators.js'
 import { Form, Field } from 'react-final-form';
 import FormControl from './../../../common/FormsControl/FormsControl';
 
@@ -11,9 +11,10 @@ const WriteMessage = (props) => {
         values.textMessage = '';
     }
 
-    return (<div className={style.writeText}>
-        <MessageForm onSubmit={onSubmit} />
-    </div>
+    return (
+        <div className={style.writeText}>
+            <MessageForm onSubmit={onSubmit} />
+        </div>
 
     );
 }
@@ -24,7 +25,7 @@ const MessageForm = (props) => {
             onSubmit={props.onSubmit}
             render={({ handleSubmit, submitting }) => (
                 <form onSubmit={handleSubmit} name='sendMessageForm'>
-                    <Field name='textMessage' validate={composeValidators(required, maxLengthInput(20))} typefield='textarea' >
+                    <Field name='textMessage' validate={required} typefield='textarea' >
                         {({ input, meta }) => (
                             <div>
                                 <FormControl typefield='textarea' input={input} meta={meta} />

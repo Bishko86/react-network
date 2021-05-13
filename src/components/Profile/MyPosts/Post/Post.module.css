@@ -3,6 +3,13 @@
     align-items: center;
     justify-content: space-between;
     border: 1px solid #000;
+    border-radius: 4px;
+    background-color: aliceblue;
+    margin: 10px 0;
+    width:60%;
+    padding: 10px;
+    position: relative;
+    left:10%;
 }
 .block_post p{
     margin-bottom: 0;
@@ -19,16 +26,16 @@
 }
 
 .delete_post {
-    border: 1px solid #000;
-    border-radius: 50%;
-    width:20px;
-    height: 20px;
-    background-color: aliceblue;
+   align-self: flex-start;
     cursor: pointer;
-    text-align: center;
-    margin-left: 10px;
 }
 
 .post_text{
     text-align: left;
+    padding: 10px 25px 10px 10px;
+}
+
+.date {
+    align-self: flex-end;
+    font-size: 10px;
 }

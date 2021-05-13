@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import ToggleButton from '../../common/ToggleButton';
-import AvatarUser from '../Dialogs/AvatarUser/AvatarUser';
+import AvatarUser from '../../common/AvatarUser/AvatarUser';
 import style from './Users.module.css';
 
 const User = ({ user, ...props }) => {
@@ -9,7 +9,7 @@ const User = ({ user, ...props }) => {
     <div className={style.userBlock} >
       <div className={style.avatar}>
         <NavLink to={`profile/${user.id}`}>
-          <AvatarUser url={user.photos.large || 'https://st2.depositphotos.com/2703645/5669/v/950/depositphotos_56695985-stock-illustration-male-avatar.jpg'} />
+          <AvatarUser url={user.photos.large || 'https://st2.depositphotos.com/2703645/5669/v/950/depositphotos_56695985-stock-illustration-male-avatar.jpg'} radius={'10px'} width={50} heigth={50} />
         </NavLink>
         {user.followed ?
 

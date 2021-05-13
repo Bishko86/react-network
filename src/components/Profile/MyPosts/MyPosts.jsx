@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 import { Form, Field } from 'react-final-form';
@@ -24,7 +24,7 @@ const MyPosts = React.memo(({ photos, addPost, deletePost, addLike, posts }) => 
                         deletePost={deletePost}
                         photos={photos}
                         addLike={addLike}
-                        message={post.text}
+                        message={post.post}
                         liked={post.liked}
                         likes={post.likes}
                         date={post.date}

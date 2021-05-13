@@ -18,7 +18,7 @@ const Dialogs = (props) => {
             {props.match.params.userId &&
                 <div className={style.messageBlock}>
                     <div className={style.messageArea}>
-                        <DialogArea userId={userId} dialogPage={props.dialogPage} />
+                        <DialogArea userId={userId} dialogPage={props.dialogPage} photos={props.photos} />
                     </div>
                     <div className={style.textArea}>
                         <WriteMessage sendMessage={props.sendMessage} userId={userId} />
