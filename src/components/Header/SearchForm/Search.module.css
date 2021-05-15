@@ -3,3 +3,31 @@
     height: 30px;
     border-radius: 10px;
 }
+.search {
+    display: flex;
+}
+
+.search input {
+    border: 2px solid rgb(3, 40, 66);
+    border-radius: 5px 0 0 5px;
+    height: 30px;
+    width: 180px;
+    box-shadow: 0 0 0 1px rgb(244, 250, 255);
+    outline: none;
+}
+
+ .search input:focus {
+   border-color: rgb(5, 95, 168);
+} 
+
+.search button {
+    height: 30px;
+    border: 2px solid rgb(3, 40, 66);
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 0 0 1px rgb(240, 248, 255);
+    background-color: rgb(225, 225, 238);
+}
+.search button:focus {
+    border-color: rgb(5, 95, 168);
+}
