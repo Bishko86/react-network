@@ -1,23 +1,29 @@
 .header {
     display: flex;
     align-items: center;
-    /* justify-content: space-evenly; */
+    justify-content: space-evenly;
     padding: 0 0 0 15px;
     grid-area: h;
-    background: #650987;
+    background: #20222f;
+    border-bottom: 1px solid rgb(240, 248, 255);
   }
   .logo {
-    color: aliceblue;
+    color: rgb(240, 248, 255);
     margin: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-right: 30px;
   }
-
   .loginBlock {
-width: 45%;
-    
+  width: 45%;
   }
-  .loginBlock a {
+  .loginBlock div {
+    float:right;
+  }
+  .loginBlock div a {
     color:#fff;
-    float: right;
+    text-decoration: none;
+    border: 1px solid rgb(240, 248, 255);
+    padding: 4px 8px;
+    border-radius: 5px;
   }
+  
