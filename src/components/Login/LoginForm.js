@@ -38,7 +38,7 @@ const LoginForm = (props) => {
                     </div>
                     {captchaUrl && <img src={captchaUrl} alt='captcha' />}
 
-                    {captchaUrl && <Field validate={composeValidators(required, maxLengthInput(30))} type="text" name='captcha' placeholder='Enter sumbols' typefield='input' render={FormControl} />}
+                    {captchaUrl && <Field validate={required} type="text" name='captcha' placeholder='Enter symbols' typefield='input' render={FormControl} />}
                     <div>
                         <button>Login</button>
                         {isError && <span>{message}</span>}
