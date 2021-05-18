@@ -3,7 +3,7 @@ import style from './Navbar.module.css'
 import NavbarItems from './NavbarItems/NavbarItems';
 
 const Navbar = (props) => {
-    // debugger
+
     let items = props.items.navbarItems();
 
     let navbarItem = items.map((item) => {
@@ -15,9 +15,9 @@ const Navbar = (props) => {
     return (
         < nav className={style.nav} >
             {navbarItem}
+            {/* <div className={style.fr}></div>
             <div className={style.fr}></div>
-            <div className={style.fr}></div>
-            <div className={style.fr}></div>
+            <div className={style.fr}></div> */}
 
         </nav >
     );
