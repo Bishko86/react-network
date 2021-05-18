@@ -1,18 +1,12 @@
+
+
+
 .nav {
     grid-area: n;
-    background: aqua;
+    background: #20222f;
     padding: 20px 0 20px 0;
+    border-right: 1px solid rgb(244, 250, 255);
     }
-    
-.item a{
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    margin: 10px 20px;
-}
-a.active_link {
-    color: #fca451;
-}
 
 .fr {
     position: relative;
