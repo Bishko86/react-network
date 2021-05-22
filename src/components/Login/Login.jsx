@@ -4,9 +4,9 @@ import LoginForm from './LoginForm';
 
 const Login = (props) => {
     return (
-        <div>
+        <div className={style.login}>
             <h1 className={style.title}>Login</h1>
-            <LoginForm />
+            <LoginForm style={style} />
         </div>
     )
 }

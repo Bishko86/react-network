@@ -12,7 +12,7 @@ const FormControl = ({ typefield, input, meta, ...props }) => {
     return (
         <>
             { React.createElement(typefield, { className: className, ...input, ...props })}
-            { isError && <span className={style.color}>{meta.error || meta.submitError}</span>}
+            { isError && <span className={style.err_block}>{meta.error || meta.submitError}</span>}
         </ >
     )
 }

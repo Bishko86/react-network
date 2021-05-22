@@ -1,4 +1,6 @@
-export const required = value => (value ? undefined : 'Required');
+import { BsExclamationCircle } from "react-icons/bs";
+
+export const required = value => (value ? undefined : <BsExclamationCircle />);
 export const maxLengthInput = maxLength => value => (
     value && value.length > maxLength ? `Max length is ${maxLength} symbols` : undefined
 )
