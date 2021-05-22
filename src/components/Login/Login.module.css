@@ -1,3 +1,88 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Farro:wght@300&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Farro:wght@300&family=Raleway:wght@100&display=swap');
 .title{
-    color:rgb(236, 222, 222);
+    font-family: 'Farro', sans-serif;
+    color:rgb(43, 42, 42);
+}
+.login {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #fff;
+}
+ .form_login input {
+    width: 400px;
+    height: 40px;
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    padding-left: 10px;
+    font-size: 16px;
+}
+.form_login input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px white inset;
+   
+} 
+.checkbox {
+margin: 20px 0 ;
+position: relative;
+left: 20px;
+text-align: center;
+}
+.checkbox label {
+    font-family: 'Farro', sans-serif;
+    position: relative;
+    bottom: 13px;
+    color:rgb(43, 42, 42);
+    font-size: 20px;
+}
+.checkbox input { 
+    width: 15px;
+    margin-left: 10px;
+}
+
+.form_login button {
+    font-family: 'Raleway', sans-serif;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    color:beige;
+    font-size: 18px;
+    background-color: #20222f;
+    border:none;
+    box-shadow: 0px 0px 0px transparent;
+    margin-bottom: 20px; 
+}
+.submit_error {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: red;
+}
+.show_hide_el {
+    position: absolute;
+    top: 7px; 
+    right: 15px; 
+}
+
+.captcha {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.captcha img {
+    width:30%;
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 8px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 8px 2px rgba(34, 60, 80, 0.2);
+}
+ .captcha input {
+    width: 29%;
+    margin:20px auto;
+    height: 40px;
+    font-size: 16px;
+}
+.captcha svg {
+    position: relative;
+    top:28px;
 }
