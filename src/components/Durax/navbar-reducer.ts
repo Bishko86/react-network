@@ -1,3 +1,14 @@
+
+type NavbarLinks = {
+    profile: string
+    users: string
+    message: string
+    news: string
+    music: string
+    settings: string
+    friends: string
+}
+
 let initialState = {
     navbarLinks: {
         profile: '/profile',
@@ -8,7 +19,7 @@ let initialState = {
         settings: '/settings',
         friends: '/friends'
 
-    },
+    } as NavbarLinks,
     navbarItems() {
         let keys = [];
         keys = Object.keys(this.navbarLinks);
@@ -17,7 +28,8 @@ let initialState = {
     }
 };
 
-const navbarReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+const navbarReducer = (state = initialState, action: any): InitialStateType => {
 
     return state;
 }

@@ -2,11 +2,14 @@ import { authMeThunk } from './auth-reducer';
 import { getUserStatus, getUserProfile } from './profile-reducer';
 
 const SET_INITIALIZED = 'SET_INITIALIZED';
-let initialState = {
+type InitialStateType = {
+    initialized: boolean
+}
+let initialState: InitialStateType = {
     initialized: false
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case SET_INITIALIZED:
             return {
@@ -19,9 +22,12 @@ const appReducer = (state = initialState, action) => {
 
 
 }
-export const setInitializedSuccess = () => ({ type: SET_INITIALIZED });
+type InitializedSuccessType = {
+    type: typeof SET_INITIALIZED
+}
+export const setInitializedSuccess = (): InitializedSuccessType => ({ type: SET_INITIALIZED });
 
-export const initializedApp = () => (dispatch) => {
+export const initializedApp = () => (dispatch: any) => {
     return dispatch(authMeThunk()).then(() => dispatch(setInitializedSuccess()))
     // let userStatus = authMe.then((authMe) => { dispatch(getUserStatus()) })
     // let profileUser = authMe.then((authMe) => { dispatch(getUserProfile()) })

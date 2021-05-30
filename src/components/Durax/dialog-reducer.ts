@@ -1,6 +1,18 @@
 const SEND_MESSAGE = 'SEND_MESSAGE';
-const SET_TEXT = 'SET_TEXT';
 
+type DialogObjectType = {
+    user?: string
+    me?: string
+    message: string
+    id: number
+
+}
+type DialogUserType = {
+    id: number
+    name: string
+    url: string | null
+    dialog: Array<DialogObjectType>
+}
 let initialState = {
     dialogUser: [
         {
@@ -110,28 +122,23 @@ let initialState = {
                 id: 3
             },]
         },
-    ],
+    ] as Array<DialogUserType>
 };
-
-const dialogReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+const dialogReducer = (state = initialState, action: SendMessageType): InitialStateType => {
     switch (action.type) {
-        case SET_TEXT:
-            return {
-                ...state,
-                userText: action.text
-            }
+
         case SEND_MESSAGE:
-            if (state.userText === '') return state;
             return {
-                ...state,
+                // ...state,
                 dialogUser: state.dialogUser.map((user, index) => {
-                    if (index === action.id) {
+                    if (index === action.payload.id) {
                         return {
                             ...user,
                             dialog: [...user.dialog, {
+                                ...action.payload,
                                 me: 'host',
-                                message: action.text,
-                                id: user.dialog.length + 1
+
                             }
                             ]
                         }
@@ -143,6 +150,14 @@ const dialogReducer = (state = initialState, action) => {
             return state;
     }
 }
+type SendMessageType = {
+    type: typeof SEND_MESSAGE
+    payload: {
 
-export const sendMessage = (text, id) => ({ type: SEND_MESSAGE, text, id });
+        message: string
+        id: number
+    }
+}
+
+export const sendMessage = (message: string, id: number): SendMessageType => ({ type: SEND_MESSAGE, payload: { message, id } });
 export default dialogReducer;

@@ -4,7 +4,7 @@ import dialogReducer from './dialog-reducer'
 import navbarReducer from './navbar-reducer'
 import usersReducer from './users-reducer';
 import authReducer from './auth-reducer';
-import appReducer from './app-reducer';
+import appReducer from './app-reducer.ts';
 
 import thunk from 'redux-thunk';
 
