@@ -1,5 +1,9 @@
 import { authorAPI, securityAPI } from '../../API/api'
+import { Dispatch } from 'redux';
 
+import { AuthType, LoginApiType, LogoutApiType } from '../../types/types';
+import { ThunkAction } from 'redux-thunk'
+import { AppStateType } from './redux-store';
 const SET_USER_DATA = 'auth_reducer_SET_USER_DATA';
 const IS_ERROR_REQUEST = 'auth_reducer_IS_ERROR_REQUEST';
 const TOGGLE_IS_FATCHING = 'auth_reducer_TOGGLE_IS_FATCHING';
@@ -31,13 +35,12 @@ let initState: InitStateType = {
     },
 }
 
-const authReducer = (state = initState, action: any): InitStateType => {
+const authReducer = (state = initState, action: ActionsType): InitStateType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.payload,
-                sdd: 234
+                ...action.payload
             }
         case IS_ERROR_REQUEST:
             return {
@@ -58,44 +61,33 @@ const authReducer = (state = initState, action: any): InitStateType => {
             return state
     }
 }
-type ToggleIsFetchingType = {
-    type: typeof TOGGLE_IS_FATCHING
-    fetching: boolean
-}
-export const toggleIsFetching = (fetching: boolean): ToggleIsFetchingType => ({ type: TOGGLE_IS_FATCHING, fetching })
-type AuthUserDataPayloadType = {
-    userId: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-}
-type AuthUserDataType = {
-    type: typeof SET_USER_DATA
-    payload: AuthUserDataPayloadType
-}
+
+type ActionsType =
+    ReturnType<typeof toggleIsFetching> |
+    ReturnType<typeof setAuthUserData> |
+    ReturnType<typeof incorrectLoginData> |
+    ReturnType<typeof setCaptchaUrl>
+
+
+
+export const toggleIsFetching = (fetching: boolean) => (<const>{ type: TOGGLE_IS_FATCHING, fetching })
+
 export const setAuthUserData = (
     userId: number | null,
     email: string | null,
     login: string | null,
     isAuth: boolean
-): AuthUserDataType => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } });
-
-type IncorrectLoginDataType = {
-    type: typeof IS_ERROR_REQUEST
-    error: InitStateErrorType
-}
-const incorrectLoginData = (isError: boolean, message: string)
-    : IncorrectLoginDataType => ({ type: IS_ERROR_REQUEST, error: { isError, message } });
-
-type CaptchaUrlType = {
-    type: typeof GET_CAPTCHA_URL
-    url: string
-}
-const setCaptchaUrl = (url: string) => ({ type: GET_CAPTCHA_URL, url });
+) => (<const>{ type: SET_USER_DATA, payload: { userId, email, login, isAuth } });
 
 
+const incorrectLoginData = (isError: boolean, message: string) => (<const>{ type: IS_ERROR_REQUEST, error: { isError, message } });
 
-export const authMeThunk = () => async (dispatch: any) => {
+
+const setCaptchaUrl = (url: string) => (<const>{ type: GET_CAPTCHA_URL, url });
+
+type DispatchType = Dispatch<ActionsType>;
+type ThunkType = ThunkAction<Promise<AuthType>, AppStateType, unknown, ActionsType>
+export const authMeThunk = (): ThunkType => async (dispatch) => {
     try {
         const data = await authorAPI.authMe()
 
@@ -109,8 +101,9 @@ export const authMeThunk = () => async (dispatch: any) => {
     catch (err) { alert(err + 'from authMe') };
 }
 
+type ThunkLoginType = ThunkAction<Promise<LoginApiType>, AppStateType, unknown, ActionsType>
 
-export const login = (login: string, password: number, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
+export const login = (login: string, password: number, rememberMe: boolean, captcha: string): ThunkLoginType => async (dispatch) => {
 
     const response = await authorAPI.login(login, password, rememberMe, captcha)
 
@@ -127,7 +120,9 @@ export const login = (login: string, password: number, rememberMe: boolean, capt
     return response;
 }
 
-export const logout = () => async (dispatch: any) => {
+type ThunkLogoutType = ThunkAction<void, AppStateType, unknown, ActionsType>
+
+export const logout = (): ThunkLogoutType => async (dispatch) => {
     const response = await authorAPI.logout()
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))

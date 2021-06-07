@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './ProfInfo.module.css';
-import { setStatus } from './../../Durax/profile-reducer'
+import { setStatus } from '../../Durax/ProfileReducer/profile-reducer'
 
 class ProfileStatus extends React.Component {
 

@@ -1,26 +1,17 @@
 import React from 'react';
 
 let name: string = 'Roman';
-type NewsObjectType = {
+type ItemPropsType = {
     user: string,
     id: number,
     text: string,
 }
-type InitStateTypes = {
-    news: Array<NewsObjectType>
+type PropsType = {
+    news: Array<ItemPropsType>
 }
-const initState: InitStateTypes
-    = {
-    news: [{ user: 'Roman', id: 1, text: 'How are you?' },
-    { user: 'Maria', id: 2, text: 'Hello me friends' },
-    { user: 'Marta', id: 3, text: 'I am fine)' }
-    ],
 
-}
-// let props = initState;
-const News = () => {
-
-    const content = initState.news.map(item => (
+const News: React.FC<PropsType> = ({ news }) => {
+    const content = news.map(item => (
         <div style={{ color: '#fff' }} key={item.id} >
             <span key={item.id + '1'}> {item.user} </span>
             <span key={item.id + '2'}> {item.id} </span>

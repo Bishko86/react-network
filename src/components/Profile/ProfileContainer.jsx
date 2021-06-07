@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import {
-    addLike, addPost, getUserProfile, getUserStatus,
-    setUserStatus, savePhoto, saveProfile, closeModalError, deletePost
-} from '../Durax/profile-reducer';
+import { getUserProfile, getUserStatus, savePhoto, saveProfile, setUserStatus } from '../Durax/ProfileReducer/profile-reducer';
+import { addLike, addPost, closeModalError, deletePost } from '../Durax/ProfileReducer/profile-action-creators';
 import { withRouter } from 'react-router';
 import { withAuthRedirect } from './../../hoc/WithAuthRedirect'
 import { compose } from 'redux';
-import { getUserPhotos, getErrResponse, getPosts, getProfile, getStatus, isLoggedUser } from './../Durax/profile-selectors'
+import { getUserPhotos, getErrResponse, getPosts, getProfile, getStatus, isLoggedUser } from '../Durax/ProfileReducer/profile-selectors'
 
 class ProfileContainer extends PureComponent {
 

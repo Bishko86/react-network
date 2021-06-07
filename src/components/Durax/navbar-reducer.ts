@@ -7,6 +7,8 @@ type NavbarLinks = {
     music: string
     settings: string
     friends: string
+    navbarItems: () => Array<string>
+
 }
 
 let initialState = {
@@ -17,7 +19,7 @@ let initialState = {
         news: '/news',
         music: '/music',
         settings: '/settings',
-        friends: '/friends'
+        friends: '/friends',
 
     } as NavbarLinks,
     navbarItems() {

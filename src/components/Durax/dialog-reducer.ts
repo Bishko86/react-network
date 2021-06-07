@@ -125,12 +125,13 @@ let initialState = {
     ] as Array<DialogUserType>
 };
 type InitialStateType = typeof initialState;
-const dialogReducer = (state = initialState, action: SendMessageType): InitialStateType => {
+
+const dialogReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
 
         case SEND_MESSAGE:
             return {
-                // ...state,
+                ...state,
                 dialogUser: state.dialogUser.map((user, index) => {
                     if (index === action.payload.id) {
                         return {
@@ -138,7 +139,7 @@ const dialogReducer = (state = initialState, action: SendMessageType): InitialSt
                             dialog: [...user.dialog, {
                                 ...action.payload,
                                 me: 'host',
-
+                                id: user.dialog.length + 1
                             }
                             ]
                         }
@@ -150,14 +151,7 @@ const dialogReducer = (state = initialState, action: SendMessageType): InitialSt
             return state;
     }
 }
-type SendMessageType = {
-    type: typeof SEND_MESSAGE
-    payload: {
+type ActionsTypes = ReturnType<typeof sendMessage>
 
-        message: string
-        id: number
-    }
-}
-
-export const sendMessage = (message: string, id: number): SendMessageType => ({ type: SEND_MESSAGE, payload: { message, id } });
+export const sendMessage = (message: string, id: number) => (<const>{ type: SEND_MESSAGE, payload: { message, id } });
 export default dialogReducer;

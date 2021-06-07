@@ -3,7 +3,6 @@ import Pagination from "react-js-pagination";
 import style from './Pagination.module.css'
 
 export const Page = (props) => {
-    // debugger
     let curPage = props.currentPage === props.page ? 'red' : 'grey';
     return <span style={{ marginLeft: 5 + 'px', color: curPage }} id={props.page} onClick={props.click}>{props.page}</span>
 }

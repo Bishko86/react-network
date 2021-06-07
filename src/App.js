@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import ProfileContainerBlock from './components/Profile/ProfileContainer';
-import UsersContainer from './components/Users/UsersContainer';
+import UserContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import Preloader from './common/Preloader';
@@ -17,6 +17,15 @@ import { compose } from 'redux';
 import { Redirect, Switch, withRouter } from 'react-router';
 import './App.css';
 const DialogContainer = React.lazy(() => import('./components/Dialogs/DialogContainer'));
+
+const initState
+  = {
+  news: [{ user: 'Roman', id: 1, text: 'How are you?' },
+  { user: 'Maria', id: 2, text: 'Hello me friends' },
+  { user: 'Marta', id: 3, text: 'I am fine)' }
+  ],
+
+}
 
 class App extends React.Component {
   catchAllUnhundledErrors = (event) => {
@@ -31,7 +40,7 @@ class App extends React.Component {
     window.removeEventListener("unhandledrejection", this.catchAllUnhundledErrors);
 
   }
-  usersContainer = () => <UsersContainer />
+  usersContainer = () => <UserContainer />
   profileContainerBlock = () => <ProfileContainerBlock />
   render() {
     if (!this.props.initialized) {
@@ -48,7 +57,7 @@ class App extends React.Component {
             </Route>
             <Route exact path='/profile/:userId?' render={this.profileContainerBlock} />
             <Route path='/dialogs/:userId?' render={withSuspense(DialogContainer)} />
-            <Route path='/news' render={News} />
+            <Route path='/news' render={() => <News {...initState} />} />
             <Route path='/music' render={Music} />
             <Route path='/settings' render={Settings} />
             <Route path='/friends' render={Friends} />

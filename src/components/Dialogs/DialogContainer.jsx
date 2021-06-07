@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Dialogs from './Dialogs';
 import { withAuthRedirect } from './../../hoc/WithAuthRedirect'
 import { sendMessage } from '../Durax/dialog-reducer';
-import { getUserPhotos } from '../Durax/profile-selectors'
+import { getUserPhotos } from '../Durax/ProfileReducer/profile-selectors'
 import { withRouter } from 'react-router';
 
 class Protector extends React.Component {

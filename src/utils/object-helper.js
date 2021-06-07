@@ -11,3 +11,7 @@ export const updateObjectInArray = (items, objPropName, itemId, newObjProps) => 
   })
 }
 
+export const updateArrayIfCondition = (condition, id, state) => {
+  if (condition) return [...state, id];
+  else return state.filter(id => id !== id)
+}
