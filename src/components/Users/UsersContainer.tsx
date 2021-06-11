@@ -1,13 +1,14 @@
 import React from 'react';
 import {
-    follow, unFollow, setCurrentPage, getUsersThunkCreator
-} from '../Durax/users-reducer'
+    follow, unFollow, getUsersThunkCreator
+} from '../Durax/UserReducer/users-reducer';
+import { setCurrentPage } from './../Durax/UserReducer/user-action-creator'
 import { connect, ConnectedProps } from 'react-redux';
 import Users from './Users';
 import Preloader from '../../common/Preloader';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { compose } from 'redux';
-import { getUsers, followingInProgress } from '../Durax/users-selectors'
+import { getUsers, followingInProgress } from '../Durax/UserReducer/users-selectors'
 import PaginationPage from '../../common/Pagination';
 import { AppStateType } from './../Durax/redux-store'
 

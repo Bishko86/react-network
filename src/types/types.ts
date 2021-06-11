@@ -78,6 +78,7 @@ export type InitialStateType = {
   status: string
   error: boolean | { error: {}; request: string | null; }
 }
+//user reducer types
 
 
 // function return types to literal types
