@@ -124,9 +124,9 @@ let initialState = {
         },
     ] as Array<DialogUserType>
 };
-type InitialStateType = typeof initialState;
+export type InitialDialogStateType = typeof initialState;
 
-const dialogReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+const dialogReducer = (state = initialState, action: ActionsTypes): InitialDialogStateType => {
     switch (action.type) {
 
         case SEND_MESSAGE:
