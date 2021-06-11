@@ -1,4 +1,4 @@
-import { profileAPI } from '../../../API/api';
+import { profileAPI } from './../../../API/api';
 import { ThunkAction } from 'redux-thunk';
 import { AppStateType } from '../redux-store';
 import * as actions from './profile-action-creators';

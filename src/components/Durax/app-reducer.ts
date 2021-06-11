@@ -28,8 +28,8 @@ const appReducer = (state = initialState, action: ActionTypes): InitialStateType
 
 type ActionTypes = ReturnType<typeof setInitializedSuccess>;
 export const setInitializedSuccess = () => ({ type: inferLiteralFromString(SET_INITIALIZED) });
-
-export const initializedApp = (): ThunkAction<Promise<AuthType>, AppStateType, unknown, ActionTypes> => async (dispatch) => {
+type InitialithedThunkType = ThunkAction<Promise<AuthType>, AppStateType, unknown, ActionTypes>
+export const initializedApp = () => async (dispatch: any) => {
 
     const data = await dispatch(authMeThunk());
     dispatch(setInitializedSuccess());

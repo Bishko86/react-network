@@ -1,15 +1,14 @@
 import { updateObjectInArray, updateArrayIfCondition } from '../../../utils/object-helper';
-import { usersAPI } from '../../../API/api'
-import { ItemsUserType } from '../../../types/types'
+import { usersAPI } from './../../../API/api';
+import { ItemsUserType } from '../../../types/types';
 import { ThunkAction } from 'redux-thunk';
 import { AppStateType } from '../redux-store';
 import { Dispatch } from 'redux';
 import * as  Action from './user-actions';
 import * as actions from './user-action-creator';
+
 type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
-
-
 
 let initState = {
     users: [] as Array<ItemsUserType>,
@@ -20,6 +19,7 @@ let initState = {
     followingInProgress: [] as Array<number>,
 }
 type InitStateType = typeof initState;
+
 const usersReducer = (state = initState, action: ActionTypes): InitStateType => {
 
     switch (action.type) {
@@ -73,9 +73,10 @@ const usersReducer = (state = initState, action: ActionTypes): InitStateType => 
     }
 }
 
-
-// thunk functions
 type ThunkType = ThunkAction<void, AppStateType, unknown, ActionTypes>
+
+// thunk function- get users data from remote server
+
 export const getUsersThunkCreator = (page: number, size: number): ThunkType =>
     async (dispatch) => {
         dispatch(actions.toggleIsFetching(true));
@@ -85,7 +86,7 @@ export const getUsersThunkCreator = (page: number, size: number): ThunkType =>
         dispatch(actions.toggleIsFetching(false));
     }
 
-//......................................................................
+// dispatch universal function 
 const followUnfollow = async (dispatch: Dispatch<ActionTypes>, request: any, followState: any, id: number) => {
     dispatch(actions.followProgress(true, id));
     let data = await request(id)
@@ -95,16 +96,18 @@ const followUnfollow = async (dispatch: Dispatch<ActionTypes>, request: any, fol
     }
 }
 
-export const unFollow = (id: number) => {
+//thunk function - unFollow user 
+export const unFollow = (id: number): ThunkType => {
     const unFollow = usersAPI.unFollow;
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ActionTypes>) => {
         followUnfollow(dispatch, unFollow, actions.unFollowSuccess, id)
     }
 }
 
-export const follow = (id: number) => {
+//thunk function - follow user 
+export const follow = (id: number): ThunkType => {
     const follow = usersAPI.follow;
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ActionTypes>) => {
         followUnfollow(dispatch, follow, actions.followSuccess, id)
     }
 }

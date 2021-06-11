@@ -25,7 +25,7 @@ export type AuthType = {
 }
 
 export type LoginApiType = {
-  resultCode: number
+  resultCode: 0
   messages: Array<string>
   data: {
     userId: number
@@ -33,7 +33,7 @@ export type LoginApiType = {
 }
 
 export type LogoutApiType = {
-  resultCode: number
+  resultCode: 1
   messages: Array<string>,
   data: any
 }
@@ -41,7 +41,7 @@ export type LogoutApiType = {
 //profile reducer type
 
 export type ProfileType = {
-  userId: number
+  userId: number | null
   lookingForAJob: boolean
   lookingForAJobDescription: string | null
   fullName: string
@@ -78,6 +78,17 @@ export type InitialStateType = {
   status: string
   error: boolean | { error: {}; request: string | null; }
 }
+export type ProfileApiType = {
+  resultCode: 0 | 1
+  messages: Array<string>
+  data: {
+    userId: number
+  } | any
+}
+
+
+
+
 //user reducer types
 
 
