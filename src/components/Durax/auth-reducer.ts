@@ -8,7 +8,7 @@ const SET_USER_DATA = 'auth_reducer_SET_USER_DATA';
 const IS_ERROR_REQUEST = 'auth_reducer_IS_ERROR_REQUEST';
 const TOGGLE_IS_FATCHING = 'auth_reducer_TOGGLE_IS_FATCHING';
 const GET_CAPTCHA_URL = 'auth_reducer_GET_CAPTCHA_URL';
-type InitStateErrorType = {
+export type InitStateErrorType = {
     isError: boolean
     message: string
 }
@@ -101,7 +101,7 @@ export const authMeThunk = () => async (dispatch: any) => {
     catch (err) { alert(err + 'from authMe') };
 }
 
-type ThunkLoginType = ThunkAction<Promise<LoginApiType>, AppStateType, unknown, ActionsType>
+export type ThunkLoginType = ThunkAction<Promise<LoginApiType>, AppStateType, unknown, ActionsType>
 
 export const login = (login: string, password: string, rememberMe: boolean, captcha: string): ThunkLoginType => async (dispatch) => {
 
@@ -123,10 +123,13 @@ export const login = (login: string, password: string, rememberMe: boolean, capt
 type ThunkLogoutType = ThunkAction<Promise<LogoutApiType>, AppStateType, unknown, ActionsType>
 
 export const logout = (): ThunkLogoutType => async (dispatch) => {
+
     const response = await authorAPI.logout()
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))
     }
+    console.log(response);
+
     return response
 }
 

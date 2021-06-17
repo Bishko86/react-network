@@ -33,9 +33,11 @@ export type LoginApiType = {
 }
 
 export type LogoutApiType = {
-  resultCode: 1
+  resultCode: 1 | 0
   messages: Array<string>,
-  data: any
+  data: {
+
+  }
 }
 
 //profile reducer type
@@ -46,13 +48,13 @@ export type ProfileType = {
   lookingForAJobDescription: string | null
   fullName: string
   contacts: ContactsType
-  photos: PhotoType
+  photos: PhotosType
 
 }
 
-export type PhotoType = {
-  small: string | null
-  large: string | null
+export type PhotosType = {
+  small: string
+  large: string
 }
 export type ContactsType = {
   github: string | null

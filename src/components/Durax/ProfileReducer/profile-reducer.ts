@@ -122,11 +122,12 @@ const profileReducer = (state = initialState, action: ActionTypes): InitialState
 
 type GetUserProfileThunkType = ThunkAction<void, AppStateType, unknown, ActionTypes>
 
-export const getUserProfile = (id: number | null): GetUserProfileThunkType => {
-    return async (dispatch) => {
+export const getUserProfile = (id: number | null) => {
+    return async (dispatch: any) => {
         try {
             let data = await profileAPI.getUser(id)
             dispatch(actions.setProfileUser(data));
+
         }
         catch (err) { dispatch(actions.setErrorData(err, 'User Profile')) }
     }
@@ -144,7 +145,7 @@ export const savePhoto = (file: any): GetUserProfileThunkType => {
     }
 }
 
-export const getUserStatus = (id: number): GetUserProfileThunkType => async (dispatch) => {
+export const getUserStatus = (id: number | null): GetUserProfileThunkType => async (dispatch) => {
     try {
         let response = await profileAPI.getStatus(id);
         dispatch(actions.setStatus(response.data));
